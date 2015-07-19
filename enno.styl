@@ -1,4 +1,4 @@
-// Enno v0.3.0
+// Enno v0.3.1
 
 $columns = 12
 $gutter = 15px
@@ -18,28 +18,22 @@ html
   max-width: $max-width
   margin: auto
 
-.clearfix
-  *zoom: 1
-  &:before, &:after
-    content: ''
-    display: table
-  &:after
-    clear: both
-
 .row
-  @extend .clearfix
   width: s('calc(100% + %s)', $gutter)
   margin-left: -($gutter)
+  font-size: 0
   &.equal
     width: 100%
     margin-left: auto
+	> *
+		font-size: 1rem
 
 grid($frac = 1, $gut = $gutter)
   return s('calc(99.99% * %s - %s)', $frac, $gut)
 
 for $i in 1..$columns
   .small-{$i}
-    float: left
+    display: inline-block
     width: grid($i/$columns)
     margin-left: $gutter
 
@@ -55,7 +49,7 @@ for $i in 1..$columns
 @media (min-width: $breakpoint.medium)
   for $i in 1..$columns
     .medium-{$i}
-      float: left
+      display: inline-block
       width: grid($i/$columns)
       margin-left: $gutter
 
@@ -68,7 +62,7 @@ for $i in 1..$columns
 @media (min-width: $breakpoint.large)
   for $i in 1..$columns
     .large-{$i}
-      float: left
+      display: inline-block
       width: grid($i/$columns)
       margin-left: $gutter
 

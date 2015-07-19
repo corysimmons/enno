@@ -1,4 +1,4 @@
-// Enno v0.3.0
+// Enno v0.3.1
 
 $columns: 12;
 $gutter: 15px;
@@ -26,9 +26,13 @@ $breakpoint-medium: 500px;
   @extend .clearfix;
   width: calc(100% + #{$gutter});
   margin-left: -#{$gutter};
+  font-size: 0;
   &.equal {
     width: 100%;
     margin-left: auto;
+  }
+  > * {
+  	font-size: 1rem;
   }
 }
 
@@ -38,7 +42,7 @@ $breakpoint-medium: 500px;
 
 @for $i from 1 through $columns {
   .small-#{$i} {
-    float: left;
+    display: inline-block;
     width: grid($i/$columns);
     margin-left: $gutter;
   }
@@ -60,7 +64,7 @@ $breakpoint-medium: 500px;
 @media (min-width: $breakpoint-medium) {
   @for $i from 1 through $columns {
     .medium-#{$i} {
-      float: left;
+      display: inline-block;
       width: grid($i/$columns);
       margin-left: $gutter;
     }
@@ -80,7 +84,7 @@ $breakpoint-medium: 500px;
 @media (min-width: $breakpoint-large) {
   @for $i from 1 through $columns {
     .large-#{$i} {
-      float: left;
+      display: inline-block;
       width: grid($i/$columns);
       margin-left: $gutter;
     }

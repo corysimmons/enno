@@ -1,0 +1,114 @@
+$columns = 12
+$gutter = 15px
+$max-width = 750px
+$breakpoint = {
+  large: 1000px,
+  medium: 500px
+}
+
+*
+  box-sizing: border-box
+
+.container
+  max-width: $max-width
+  margin: auto
+
+.clearfix
+  *zoom: 1
+  &:before, &:after
+    content: ''
+    display: table
+  &:after
+    clear: both
+
+.row
+  @extend .clearfix
+  width: s('calc(100% + %s)', $gutter)
+  margin-left: -($gutter)
+  &.equal
+    width: 100%
+    margin-left: auto
+
+grid($frac = 1, $gut = $gutter)
+  return s('calc(99.99% * %s - %s)', $frac, $gut)
+
+for $i in 1..$columns
+  .small-{$i}
+    float: left
+    width: grid($i/$columns)
+    margin-left: $gutter
+
+.gutless
+  width: 100%
+  margin-left: auto
+
+for $i in 1..$columns
+  .gutless
+    > .small-{$i}
+      width: (100% * $i/$columns)%
+
+@media (min-width: $breakpoint.medium)
+  for $i in 1..$columns
+    .medium-{$i}
+      float: left
+      width: grid($i/$columns)
+      margin-left: $gutter
+
+@media (min-width: $breakpoint.medium)
+  for $i in 1..$columns
+    .gutless
+      > .medium-{$i}
+        width: (100% * $i/$columns)%
+
+@media (min-width: $breakpoint.large)
+  for $i in 1..$columns
+    .large-{$i}
+      float: left
+      width: grid($i/$columns)
+      margin-left: $gutter
+
+@media (min-width: $breakpoint.large)
+  for $i in 1..$columns
+    .gutless
+      > .large-{$i}
+        width: (100% * $i/$columns)%
+
+.gutless
+  > *
+    margin-left: 0
+
+// Based off of work by Daniel Box - http://codepen.io/dbox/pen/pJrROo
+equal($gut = $gutter, $max-items = $columns)
+  @extend .clearfix
+
+  for $i in (1..$max-items)
+    > *:nth-last-child({$i}):first-child,
+    > *:nth-last-child({$i}):first-child ~ *
+
+      $equal-slice = unit((100 / $i), '%')
+      $unit-type = unit($gut)
+      $gut-adjust = unit(($gut * ($i - 1) / $i), $unit-type)
+      $gut = unit(($gut), $unit-type)
+
+      width: s('calc(%s - %s)', $equal-slice, $gut-adjust)
+      margin-right: $gut
+
+  > *
+    float: left
+    &:last-child
+      margin-right: 0 !important
+
+.equal
+  equal()
+
+[class*="bg-"]
+  position: relative
+  > *
+    position: relative
+    z-index: 1
+  &:before
+    position: absolute
+    display: block
+    width: s('calc(100% - %s)', $gutter)
+    height: 100%
+    left: $gutter

@@ -27,3 +27,34 @@ Enno is a `display: inline-block` grid system so you can horizontally, verticall
 - `.gutless` removes gutters from all columns within a row. Apply to a `.row`.
 - `.bg-foo` allows you to specify background colors for a row. Apply to a `.row` and customize its style as a `:before` selector like so: `.bg-foo:before { background: tomato; }`. A little verbose, but not used very much and solves a problem with the negative margin grid.
 - `.equal` displays children elements as equal widths of each other. As you add items, they will take up an equal width of the container. You don't need the `.row` class for this.
+
+
+### Examples
+
+```html
+<div class="row bg-yellow">
+  <div class="small-12 medium-6 large-4">1</div>
+  <div class="small-12 medium-6 large-4">2</div>
+  <div class="small-12 medium-6 large-4">3</div>
+  <div class="small-12 medium-6 large-4">
+    <div class="row">
+      <div class="small-12 medium-6 large-6">1</div>
+      <div class="small-12 medium-6 large-6">2</div>
+    </div>
+  </div>
+</div>
+```
+
+```css
+.bg-yellow:before {
+	background: yellow;
+}
+```
+
+```html
+<div class="equal">
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+</div>
+```

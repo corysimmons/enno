@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Enno</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+
+		<div class="container">
+
+		  <h1>Fixed Sized Gutters, Flush Background</h1>
+
+		  <div class="row bg-yellow">
+		    <div class="small-12 medium-6 large-4">1</div>
+		    <div class="small-12 medium-6 large-4">2</div>
+		    <div class="small-12 medium-6 large-4">3</div>
+		    <div class="small-12 medium-6 large-4">
+		      <div class="row">
+		        <div class="small-12 medium-6 large-6">1</div>
+		        <div class="small-12 medium-6 large-6">2</div>
+		      </div>
+		    </div>
+		  </div>
+
+		  <h1>No Gutters, Nested Gutter</h1>
+
+		  <div class="row gutless">
+		    <div class="small-12 medium-6 large-4">1</div>
+		    <div class="small-12 medium-6 large-4">2</div>
+		    <div class="small-12 medium-6 large-4">3</div>
+		    <div class="small-12 medium-6 large-4">
+		      <div class="row bg-black">
+		        <div class="small-12 medium-6 large-6">1</div>
+		        <div class="small-12 medium-6 large-6">2</div>
+		      </div>
+		    </div>
+		  </div>
+
+		  <h1>Equal Sized Columns without Flexbox</h1>
+
+		  <div class="equal">
+		    <div>1</div>
+		    <div>2</div>
+		    <div>3</div>
+		    <div>4</div>
+		    <!-- Add up to 12 divs total (this number is customizable) -->
+		  </div>
+
+		</div>
+
+	</body>
+</html>

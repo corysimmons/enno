@@ -101,28 +101,17 @@ $breakpoint-medium: 500px;
   }
 }
 
-// Based off of work by Daniel Box - http://codepen.io/dbox/pen/pJrROo
-@mixin equal($gut: $gutter, $max-items: $columns) {
-  @extend .clearfix;
-
-  @for $i from 1 through $max-items {
-    > *:nth-last-child(#{$i}):first-child,
-    > *:nth-last-child(#{$i}):first-child ~ * {
-      width: calc(100 / #{$i} * 1% - #{$gut} * (#{$i} - 1) / #{$i});
-      margin-right: $gut;
-    }
-  }
-
-  > * {
-    float: left;
-    &:last-child {
-      margin-right: 0 !important;
-    }
-  }
-}
-
+// Idea courtesy of Daniel Box
 .equal {
-  @include equal();
+  display: table;
+  table-layout: fixed;
+  width: calc(100% + (#{$gutter} * 2));
+  border-spacing: $gutter 0;
+  margin-left: -#{$gutter};
+  margin-right: -#{$gutter};
+  > * {
+  	display: table-cell;
+  }
 }
 
 [class*="bg-"] {

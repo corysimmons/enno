@@ -6,6 +6,9 @@ $breakpoint = {
   medium: 500px
 }
 
+html
+  overflow-x: hidden
+
 *
   box-sizing: border-box
 
@@ -77,29 +80,17 @@ for $i in 1..$columns
   > *
     margin-left: 0
 
-// Based off of work by Daniel Box - http://codepen.io/dbox/pen/pJrROo
-equal($gut = $gutter, $max-items = $columns)
-  @extend .clearfix
-
-  for $i in (1..$max-items)
-    > *:nth-last-child({$i}):first-child,
-    > *:nth-last-child({$i}):first-child ~ *
-
-      $equal-slice = unit((100 / $i), '%')
-      $unit-type = unit($gut)
-      $gut-adjust = unit(($gut * ($i - 1) / $i), $unit-type)
-      $gut = unit(($gut), $unit-type)
-
-      width: s('calc(%s - %s)', $equal-slice, $gut-adjust)
-      margin-right: $gut
-
-  > *
-    float: left
-    &:last-child
-      margin-right: 0 !important
-
+// Idea courtesy of Daniel Box
 .equal
-  equal()
+  display: table
+  table-layout: fixed
+  width: s('calc(100% + %s)', $gutter * 2)
+  border-spacing: $gutter 0
+  margin-left: -($gutter)
+  margin-right: -($gutter)
+  > *
+  	display: table-cell
+
 
 [class*="bg-"]
   position: relative
